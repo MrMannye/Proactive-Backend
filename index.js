@@ -30,23 +30,54 @@ app.get("/tasks", (req,res) => {
 app.get("/tasks/:publickey", (req,res) => {
     const publicKey = req.params.publickey;
 
-    const sql = "SELECT * FROM user_register WHERE user_publickey = ?";
+    const sql = "SELECT * FROM user_register WHERE user_publickey = ? AND task_state = 0";
+    db.query(sql,[publicKey],(err,result) => {
+        res.send(result);
+    })
+})
+
+app.get("/tasks/:publickey/:task_name", (req,res) => {
+    const publicKey = req.params.publickey;
+    const task_name = req.params.task_name;
+
+    const sql = "SELECT * FROM user_register WHERE user_publickey = ? AND task_name = ?";
+    db.query(sql,[publicKey,task_name],(err,result) => {
+        res.send(result);
+    })
+})
+
+app.get("/completedTasks/:publickey", (req,res) => {
+    const publicKey = req.params.publickey;
+
+    const sql = "SELECT * FROM user_register WHERE user_publickey = ? AND task_state = 1";
     db.query(sql,[publicKey],(err,result) => {
         res.send(result);
     })
 })
 
 
-app.post("/tasks", (req, res) => {
-    const nombre = req.body.nombre;
-    const correo = req.body.correo;
-    const proyecto = req.body.proyecto;
-    const texto = req.body.texto;
+app.post("/addTask", (req, res) => {
+    const user_publickey = req.body.user_publickey;
+    const task_name = req.body.task_name;
+    const task_desc = req.body.task_desc;
+    const date = new Date();
+    const task_state = req.body.task_state;
 
-    const sql = "INSERT INTO Contacto(Cli_nombre, Cli_correo,Cli_proyecto,Cli_mensaje) VALUES(?,?,?,?)";
+    const sql = "INSERT INTO user_register VALUES(?,?,?,?,?,?)";
 
-    db.query(sql, [nombre,correo,proyecto,texto], (err,result) => {
-        res.send("Usuario Ingresado Correctamente");
+    db.query(sql, [user_publickey,task_name,task_desc,date,task_state,"0x0"], (err,result) => {
+        res.send("Task Ingresado Correctamente");
+    })
+})
+
+app.post("/completeTask", (req, res) => {
+    const user_publickey = req.body.user_publickey;
+    const task_name = req.body.task_name;
+
+    const sql = "UPDATE user_register SET task_state = 1 WHERE user_publickey = ? AND task_name = ?";
+
+    db.query(sql, [user_publickey,task_name], (err,result) => {
+        res.send("Task Completado Correctamente");
     })
 })
 
