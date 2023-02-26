@@ -8,7 +8,7 @@ const db = mysql.createPool({
     user:"b977b2dec65957",
     password:"25068e20",
     database: "heroku_c9a186fb0967e5b",
-    port: process.env.PORT || 3306,
+    port: 3306,
 })
 
 app.use(cors({
