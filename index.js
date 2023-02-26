@@ -11,7 +11,6 @@ const db = mysql.createPool({
     port: process.env.PORT || 3306,
 })
 
-
 app.use(cors({
     credentials: true,
 }));
