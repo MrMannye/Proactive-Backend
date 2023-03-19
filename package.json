@@ -4,9 +4,10 @@
   "description": "Backend para Almacenar Contacto en Portafolio Manu",
   "main": "index.js",
   "scripts": {
+    "tsc": "tsc",
     "start": "node index.js",
     "dev": "ts-node-dev index.ts",
-    "production": "tsc && node ./build/index.js",
+    "production": "node ./build/index.js",
     "devStart": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -1,19 +1,21 @@
-FROM node:16
+# Use the official Node.js image as the base image
+FROM node:18
 
-# Create app directory
+ENV NODE_ENV=production
+
+# Set the working directory in the container
 WORKDIR /app
 
-# Install app dependencies
-# A wildcard is used to ensure both package.json AND package-lock.json are copied
-# where available (npm@5+)
-COPY package*.json ./
+COPY ["package.json", "package-lock.json*", "./"]
 
-RUN npm install
-# If you are building your code for production
-# RUN npm ci --only=production
-
-# Bundle app source
+# Copy the application files into the working directory
 COPY . .
 
+# Install the application dependencies
+RUN npm install
+RUN npm run tsc
+
 EXPOSE 8080
-CMD [ "npm", "production" ]
+
+# Define the entry point for the container
+CMD ["npm", "production"]
