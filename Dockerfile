@@ -6,7 +6,7 @@ ENV NODE_ENV=production
 # Set the working directory in the container
 WORKDIR /app
 
-COPY ["package.json", "package-lock.json*", "./"]
+COPY package*.json ./
 
 # Copy the application files into the working directory
 COPY . .
