@@ -13,7 +13,6 @@ COPY . .
 
 # Install the application dependencies
 RUN npm install
-RUN npm run tsc
 
 EXPOSE 8080
 
