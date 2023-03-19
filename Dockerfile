@@ -17,5 +17,5 @@ RUN npm ci --only=production
 COPY . .
 
 # Define the entry point for the container
-CMD ["npm", "production"]
+CMD ["node", "./build/index.js"]
 EXPOSE 3000
