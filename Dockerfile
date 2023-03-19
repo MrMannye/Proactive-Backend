@@ -17,5 +17,5 @@ RUN npm ci --only=production
 COPY . .
 
 # Define the entry point for the container
-CMD ["node", "./build/index.js"]
+CMD ["npm", "run start"]
 EXPOSE 8080
