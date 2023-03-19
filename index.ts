@@ -3,6 +3,7 @@ import cors from 'cors'
 import { routes } from './network/routes';
 
 const app = express();
+const PORT = 8080;
 
 app.use(cors({
     credentials: true,
@@ -14,6 +15,6 @@ app.use(express.urlencoded({
 
 routes(app);
 
-app.listen(8080, () => {
+app.listen(PORT, () => {
     console.log("Escuchando en puerto 8080");
 })
