@@ -2,10 +2,11 @@ import express from 'express'
 import cors from 'cors'
 import { routes } from './network/routes'
 import swaggerUI from 'swagger-ui-express'
+import swaggerDoc from './public/swagger.json'
 
 const app = express();
 const PORT = 8080;
-const swaggerDoc = require('./swagger.json');
+
 
 app.use(cors({
     credentials: true,
