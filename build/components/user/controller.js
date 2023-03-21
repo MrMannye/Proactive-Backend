@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.addUser = exports.getUser = exports.getUsers = void 0;
+exports.addUser = exports.getUserInterest = exports.getUser = exports.getUsers = void 0;
 const store_1 = require("./store");
 const getUsers = () => __awaiter(void 0, void 0, void 0, function* () {
     return new Promise((resolve, reject) => __awaiter(void 0, void 0, void 0, function* () {
@@ -35,6 +35,18 @@ const getUser = (email) => __awaiter(void 0, void 0, void 0, function* () {
     }));
 });
 exports.getUser = getUser;
+const getUserInterest = (email) => __awaiter(void 0, void 0, void 0, function* () {
+    return new Promise((resolve, reject) => __awaiter(void 0, void 0, void 0, function* () {
+        try {
+            const user = yield (0, store_1.getUserInterest)(email);
+            resolve(user);
+        }
+        catch (error) {
+            reject(error);
+        }
+    }));
+});
+exports.getUserInterest = getUserInterest;
 const addUser = (user) => __awaiter(void 0, void 0, void 0, function* () {
     return new Promise((resolve, reject) => __awaiter(void 0, void 0, void 0, function* () {
         if (!user)

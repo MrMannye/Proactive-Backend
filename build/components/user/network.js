@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const response_1 = require("../../network/response");
 const controller_1 = require("./controller");
+const controller_2 = require("./controller");
 const router = express_1.default.Router();
 // OBTENER TODOS LOS USUARIOS
 router.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -30,6 +31,15 @@ router.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 router.get("/:email", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const user = yield (0, controller_1.getUser)(req.params.email);
+        (0, response_1.responseSuccess)(req, res, user, 200);
+    }
+    catch (error) {
+        (0, response_1.responseError)(req, res, error, 500);
+    }
+}));
+router.get("/interest/:email", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const user = yield (0, controller_2.getUserInterest)(req.params.email);
         (0, response_1.responseSuccess)(req, res, user, 200);
     }
     catch (error) {

@@ -1,6 +1,7 @@
 import express from 'express'
 import { responseSuccess, responseError } from '../../network/response';
 import { addUser, getUsers, getUser } from './controller';
+import { getUserInterest } from './controller';
 
 const router = express.Router();
 
@@ -18,6 +19,15 @@ router.get("/", async(req,res) => {
 router.get("/:email", async(req,res) => {
     try {
         const user = await getUser(req.params.email);
+        responseSuccess(req,res,user,200);
+    } catch (error) {
+        responseError(req, res, error, 500);
+    }
+})
+
+router.get("/interest/:email", async(req,res) => {
+    try {
+        const user = await getUserInterest(req.params.email);
         responseSuccess(req,res,user,200);
     } catch (error) {
         responseError(req, res, error, 500);

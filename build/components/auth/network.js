@@ -16,34 +16,14 @@ const express_1 = __importDefault(require("express"));
 const response_1 = require("../../network/response");
 const controller_1 = require("./controller");
 const router = express_1.default.Router();
-// OBTENER TODOS LOS USUARIOS
-router.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+// loggear USUARIO 
+router.post("/login", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const users = yield (0, controller_1.getUsers)();
-        (0, response_1.responseSuccess)(req, res, users, 200);
-    }
-    catch (error) {
-        (0, response_1.responseError)(req, res, error, 500);
-    }
-}));
-// OBTENER UN USUARIO
-router.get("/:email", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const user = yield (0, controller_1.getUser)(req.params.email);
-        (0, response_1.responseSuccess)(req, res, user, 200);
-    }
-    catch (error) {
-        (0, response_1.responseError)(req, res, error, 500);
-    }
-}));
-// AÑADIR USUARIO NUEVO 
-router.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const newUser = yield (0, controller_1.addUser)(req.body);
+        const newUser = yield (0, controller_1.login)(req.body);
         (0, response_1.responseSuccess)(req, res, newUser, 200);
     }
     catch (error) {
-        (0, response_1.responseError)(req, res, error, 500);
+        (0, response_1.responseError)(req, res, error, 401);
     }
 }));
 exports.default = router;

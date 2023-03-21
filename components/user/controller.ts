@@ -1,5 +1,5 @@
 import {User} from './models'
-import { getUsers as get, getUser as getOne , addUser as add } from './store'
+import { getUsers as get, getUser as getOne , addUser as add, getUserInterest as getInterest } from './store'
 
 export const getUsers = async () => {
     return new Promise(async(resolve,reject) => {
@@ -16,6 +16,17 @@ export const getUser = async (email:string) => {
     return new Promise(async(resolve,reject) => {
         try {
             const user = await getOne(email);
+            resolve(user);
+        } catch (error) {
+            reject(error)
+        }
+    })
+}
+
+export const getUserInterest = async (email:string) => {
+    return new Promise(async(resolve,reject) => {
+        try {
+            const user = await getInterest(email);
             resolve(user);
         } catch (error) {
             reject(error)
