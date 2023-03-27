@@ -6,7 +6,7 @@ export const login = async (user:User) => {
         try {
             const authUser = await get(user.email);
             if(authUser.password === user.password){
-                resolve(user);
+                resolve(authUser);
             }else{
                 reject("[controller auth] Credenciales invalidas")
             }
