@@ -35,9 +35,9 @@ router.get("/interest/:id", async(req,res) => {
 })
 
 // OBTENER LOS EVENTOS DE INTERES DE UN USUARIO
-router.get("/miseventos", async(req,res) => {
+router.post("/miseventos", async(req,res) => {
     try {
-        const eventosUser = await getEventUser(req.body);
+        const eventosUser = await getEventUser(req.body.id);
         responseSuccess(req,res,eventosUser,200);
     } catch (error) {
         responseError(req, res, error, 500);

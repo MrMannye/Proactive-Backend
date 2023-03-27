@@ -47,9 +47,9 @@ router.get("/interest/:id", (req, res) => __awaiter(void 0, void 0, void 0, func
     }
 }));
 // OBTENER LOS EVENTOS DE INTERES DE UN USUARIO
-router.get("/miseventos", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.post("/miseventos", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const eventosUser = yield (0, controller_1.getEventUser)(req.body);
+        const eventosUser = yield (0, controller_1.getEventUser)(req.body.id);
         (0, response_1.responseSuccess)(req, res, eventosUser, 200);
     }
     catch (error) {
