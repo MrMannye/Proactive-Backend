@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.addEvent = exports.getEventInterest = exports.getEvent = exports.getEvents = void 0;
+exports.addEvent = exports.getEventUser = exports.getEventInterest = exports.getEvent = exports.getEvents = void 0;
 const database_1 = __importDefault(require("../../database"));
 const getEvents = () => __awaiter(void 0, void 0, void 0, function* () {
     return new Promise((resolve, reject) => {
@@ -59,6 +59,23 @@ const getEventInterest = (id) => __awaiter(void 0, void 0, void 0, function* () 
     });
 });
 exports.getEventInterest = getEventInterest;
+const getEventUser = (idUsuario) => __awaiter(void 0, void 0, void 0, function* () {
+    return new Promise((resolve, reject) => {
+        const query = `SELECT eventos.Id, eventos.name_evento, eventos.organizador, eventos.fecha_evento, eventos.descripcion_evento FROM evento_usuarios 
+        INNER JOIN eventos ON evento_usuarios.Id_Evento = eventos.Id
+        INNER JOIN users ON evento_usuarios.Id_Usuario = users.Id
+        WHERE users.Id = ${idUsuario}`;
+        try {
+            database_1.default.query(query, (_err, result) => {
+                resolve(result);
+            });
+        }
+        catch (error) {
+            reject(error);
+        }
+    });
+});
+exports.getEventUser = getEventUser;
 const addEvent = (evento) => __awaiter(void 0, void 0, void 0, function* () {
     return new Promise((resolve, reject) => {
         const query = `INSERT INTO Eventos VALUES(${evento.name_evento},${evento.descripcion_evento},${evento.fecha_evento})`;

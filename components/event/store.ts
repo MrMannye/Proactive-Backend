@@ -43,6 +43,22 @@ export const getEventInterest= async (id: number) => {
     })
 }
 
+export const getEventUser= async (idUsuario: number) => {
+    return new Promise((resolve, reject) => {
+        const query = `SELECT eventos.Id, eventos.name_evento, eventos.organizador, eventos.fecha_evento, eventos.descripcion_evento FROM evento_usuarios 
+        INNER JOIN eventos ON evento_usuarios.Id_Evento = eventos.Id
+        INNER JOIN users ON evento_usuarios.Id_Usuario = users.Id
+        WHERE users.Id = ${idUsuario}`;
+        try {
+            db.query(query, (_err, result) => {
+                resolve(result);
+            })
+        } catch (error) {
+            reject(error);
+        }
+    })
+}
+
 export const addEvent = async (evento:Event) => {
     return new Promise((resolve, reject) => {
         const query = `INSERT INTO Eventos VALUES(${evento.name_evento},${evento.descripcion_evento},${evento.fecha_evento})`;

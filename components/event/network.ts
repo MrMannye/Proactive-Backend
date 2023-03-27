@@ -1,6 +1,6 @@
 import express from 'express'
 import { responseSuccess, responseError } from '../../network/response';
-import { getEvents, getEvent, getEventInterest } from './controller';
+import { getEvents, getEvent, getEventInterest, getEventUser } from './controller';
 
 const router = express.Router();
 
@@ -29,6 +29,16 @@ router.get("/interest/:id", async(req,res) => {
     try {
         const newUser = await getEventInterest(parseInt(req.params.id));
         responseSuccess(req,res,newUser,200);
+    } catch (error) {
+        responseError(req, res, error, 500);
+    }
+})
+
+// OBTENER LOS EVENTOS DE INTERES DE UN USUARIO
+router.get("/miseventos", async(req,res) => {
+    try {
+        const eventosUser = await getEventUser(req.body);
+        responseSuccess(req,res,eventosUser,200);
     } catch (error) {
         responseError(req, res, error, 500);
     }

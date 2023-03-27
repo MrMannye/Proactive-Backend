@@ -1,5 +1,5 @@
 import {Event} from './models'
-import { getEvents as get, getEvent as getOne , getEventInterest as getInterest } from './store'
+import { getEvents as get, getEvent as getOne , getEventInterest as getInterest, getEventUser as getEUser } from './store'
 
 export const getEvents = async () => {
     return new Promise(async(resolve,reject) => {
@@ -17,6 +17,17 @@ export const getEvent = async (id:number) => {
         try {
             const evento = await getOne(id);
             resolve(evento);
+        } catch (error) {
+            reject(error)
+        }
+    })
+}
+
+export const getEventUser = async (id:number) => {
+    return new Promise(async(resolve,reject) => {
+        try {
+            const eventos = await getEUser(id);
+            resolve(eventos);
         } catch (error) {
             reject(error)
         }

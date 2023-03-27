@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getEventInterest = exports.getEvent = exports.getEvents = void 0;
+exports.getEventInterest = exports.getEventUser = exports.getEvent = exports.getEvents = void 0;
 const store_1 = require("./store");
 const getEvents = () => __awaiter(void 0, void 0, void 0, function* () {
     return new Promise((resolve, reject) => __awaiter(void 0, void 0, void 0, function* () {
@@ -35,6 +35,18 @@ const getEvent = (id) => __awaiter(void 0, void 0, void 0, function* () {
     }));
 });
 exports.getEvent = getEvent;
+const getEventUser = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    return new Promise((resolve, reject) => __awaiter(void 0, void 0, void 0, function* () {
+        try {
+            const eventos = yield (0, store_1.getEventUser)(id);
+            resolve(eventos);
+        }
+        catch (error) {
+            reject(error);
+        }
+    }));
+});
+exports.getEventUser = getEventUser;
 const getEventInterest = (id) => __awaiter(void 0, void 0, void 0, function* () {
     return new Promise((resolve, reject) => __awaiter(void 0, void 0, void 0, function* () {
         if (!id)
