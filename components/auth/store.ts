@@ -6,6 +6,7 @@ export const getUser = async (email: string):Promise<UserDB> => {
         const query = `SELECT * FROM Users WHERE email = "${email}"`;
         try {
             db.query(query, (_err, result) => {
+                console.log(result[0])
                 resolve(result[0]);
             })
         } catch (error) {

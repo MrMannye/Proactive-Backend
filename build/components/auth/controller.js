@@ -16,7 +16,7 @@ const login = (user) => __awaiter(void 0, void 0, void 0, function* () {
         try {
             const authUser = yield (0, store_1.getUser)(user.email);
             if (authUser.password === user.password) {
-                resolve(user);
+                resolve(authUser);
             }
             else {
                 reject("[controller auth] Credenciales invalidas");

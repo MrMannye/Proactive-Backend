@@ -19,6 +19,7 @@ const getUser = (email) => __awaiter(void 0, void 0, void 0, function* () {
         const query = `SELECT * FROM Users WHERE email = "${email}"`;
         try {
             database_1.default.query(query, (_err, result) => {
+                console.log(result[0]);
                 resolve(result[0]);
             });
         }
