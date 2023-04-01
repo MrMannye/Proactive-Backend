@@ -46,10 +46,29 @@ router.get("/interest/:id", (req, res) => __awaiter(void 0, void 0, void 0, func
         (0, response_1.responseError)(req, res, error, 500);
     }
 }));
-// OBTENER LOS EVENTOS DE INTERES DE UN USUARIO
+// OBTENER LOS EVENTOS DEL USUARIO DE UN USUARIO
 router.post("/miseventos", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const eventosUser = yield (0, controller_1.getEventUser)(req.body.id);
+        (0, response_1.responseSuccess)(req, res, eventosUser, 200);
+    }
+    catch (error) {
+        (0, response_1.responseError)(req, res, error, 500);
+    }
+}));
+router.get("/eventosInteresados/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const eventos = yield (0, controller_1.getInteresados)(parseInt(req.params.id));
+        (0, response_1.responseSuccess)(req, res, eventos, 200);
+    }
+    catch (error) {
+        (0, response_1.responseError)(req, res, error, 500);
+    }
+}));
+// SUSCRIBIRSE A UN EVENTO DEL USUARIO
+router.post("/agregarevento", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const eventosUser = yield (0, controller_1.addEventUser)(req.body);
         (0, response_1.responseSuccess)(req, res, eventosUser, 200);
     }
     catch (error) {

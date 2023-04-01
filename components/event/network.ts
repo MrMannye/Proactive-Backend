@@ -1,6 +1,6 @@
 import express from 'express'
 import { responseSuccess, responseError } from '../../network/response';
-import { getEvents, getEvent, getEventInterest, getEventUser } from './controller';
+import { getEvents, getEvent, getEventInterest, getEventUser, addEventUser, getInteresados } from './controller';
 
 const router = express.Router();
 
@@ -34,10 +34,29 @@ router.get("/interest/:id", async(req,res) => {
     }
 })
 
-// OBTENER LOS EVENTOS DE INTERES DE UN USUARIO
+// OBTENER LOS EVENTOS DEL USUARIO DE UN USUARIO
 router.post("/miseventos", async(req,res) => {
     try {
         const eventosUser = await getEventUser(req.body.id);
+        responseSuccess(req,res,eventosUser,200);
+    } catch (error) {
+        responseError(req, res, error, 500);
+    }
+})
+
+router.get("/eventosInteresados/:id", async(req,res) => {
+    try {
+        const eventos = await getInteresados(parseInt(req.params.id));
+        responseSuccess(req,res,eventos,200);
+    } catch (error) {
+        responseError(req, res, error, 500);
+    }
+})
+
+// SUSCRIBIRSE A UN EVENTO DEL USUARIO
+router.post("/agregarevento", async(req,res) => {
+    try {
+        const eventosUser = await addEventUser(req.body);
         responseSuccess(req,res,eventosUser,200);
     } catch (error) {
         responseError(req, res, error, 500);
