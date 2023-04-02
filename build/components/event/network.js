@@ -66,7 +66,17 @@ router.get("/eventosInteresados/:id", (req, res) => __awaiter(void 0, void 0, vo
     }
 }));
 // SUSCRIBIRSE A UN EVENTO DEL USUARIO
-router.post("/agregarevento", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.post("/addEvent", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const eventosUser = yield (0, controller_1.addEventUser)(req.body);
+        (0, response_1.responseSuccess)(req, res, eventosUser, 200);
+    }
+    catch (error) {
+        (0, response_1.responseError)(req, res, error, 500);
+    }
+}));
+// ELIMIAR UN EVENTO DEL USUARIO
+router.post("/deletEventUser", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const eventosUser = yield (0, controller_1.addEventUser)(req.body);
         (0, response_1.responseSuccess)(req, res, eventosUser, 200);

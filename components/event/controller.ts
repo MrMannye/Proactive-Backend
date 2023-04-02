@@ -4,7 +4,8 @@ import { getEvents as get,
     getEventInterest as getInterest, 
     getEventUser as getEUser, 
     addEventUser as addEventU, 
-    getInteresados as getI } from './store'
+    getInteresados as getI,
+    deleteEventUser as deleteEventU } from './store'
 
 export const getEvents = async () => {
     return new Promise(async(resolve,reject) => {
@@ -74,3 +75,15 @@ export const addEventUser = async (eventUser:EventUser) => {
         }
     })
 }  
+
+export const deleteEventUser = async (eventUser:EventUser) => {
+    return new Promise(async(resolve,reject) => {
+        if(!eventUser) reject("[controller] no hay datos para añadir")
+        try {
+            const addedEvento = await deleteEventU(eventUser);
+            resolve(addedEvento);
+        } catch (error) {
+            reject(error)
+        }
+    })
+}

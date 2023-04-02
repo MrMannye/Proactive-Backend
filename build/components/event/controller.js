@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.addEventUser = exports.getInteresados = exports.getEventInterest = exports.getEventUser = exports.getEvent = exports.getEvents = void 0;
+exports.deleteEventUser = exports.addEventUser = exports.getInteresados = exports.getEventInterest = exports.getEventUser = exports.getEvent = exports.getEvents = void 0;
 const store_1 = require("./store");
 const getEvents = () => __awaiter(void 0, void 0, void 0, function* () {
     return new Promise((resolve, reject) => __awaiter(void 0, void 0, void 0, function* () {
@@ -89,3 +89,17 @@ const addEventUser = (eventUser) => __awaiter(void 0, void 0, void 0, function* 
     }));
 });
 exports.addEventUser = addEventUser;
+const deleteEventUser = (eventUser) => __awaiter(void 0, void 0, void 0, function* () {
+    return new Promise((resolve, reject) => __awaiter(void 0, void 0, void 0, function* () {
+        if (!eventUser)
+            reject("[controller] no hay datos para añadir");
+        try {
+            const addedEvento = yield (0, store_1.deleteEventUser)(eventUser);
+            resolve(addedEvento);
+        }
+        catch (error) {
+            reject(error);
+        }
+    }));
+});
+exports.deleteEventUser = deleteEventUser;

@@ -54,7 +54,7 @@ router.get("/eventosInteresados/:id", async(req,res) => {
 })
 
 // SUSCRIBIRSE A UN EVENTO DEL USUARIO
-router.post("/agregarevento", async(req,res) => {
+router.post("/addEvent", async(req,res) => {
     try {
         const eventosUser = await addEventUser(req.body);
         responseSuccess(req,res,eventosUser,200);
@@ -62,5 +62,16 @@ router.post("/agregarevento", async(req,res) => {
         responseError(req, res, error, 500);
     }
 })
+
+// ELIMIAR UN EVENTO DEL USUARIO
+router.post("/deletEventUser", async(req,res) => {
+    try {
+        const eventosUser = await addEventUser(req.body);
+        responseSuccess(req,res,eventosUser,200);
+    } catch (error) {
+        responseError(req, res, error, 500);
+    }
+})
+
 
 export default router

@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getInteresados = exports.addEvent = exports.addEventUser = exports.getEventUser = exports.getEventInterest = exports.getEvent = exports.getEvents = void 0;
+exports.deleteEventUser = exports.getInteresados = exports.addEvent = exports.addEventUser = exports.getEventUser = exports.getEventInterest = exports.getEvent = exports.getEvents = void 0;
 const database_1 = __importDefault(require("../../database"));
 const getEvents = () => __awaiter(void 0, void 0, void 0, function* () {
     return new Promise((resolve, reject) => {
@@ -78,7 +78,7 @@ const getEventUser = (idUsuario) => __awaiter(void 0, void 0, void 0, function* 
 exports.getEventUser = getEventUser;
 const addEventUser = (eventoUser) => __awaiter(void 0, void 0, void 0, function* () {
     return new Promise((resolve, reject) => {
-        const query = `INSERT INTO Evento_Usuarios VALUES(${eventoUser.Id_Evento},${eventoUser.Id_Usuario})`;
+        const query = `INSERT INTO evento_usuarios VALUES(${eventoUser.Id_Evento},${eventoUser.Id_Usuario})`;
         try {
             database_1.default.query(query, (_err, result) => {
                 resolve(result);
@@ -106,7 +106,7 @@ const addEvent = (evento) => __awaiter(void 0, void 0, void 0, function* () {
 exports.addEvent = addEvent;
 const getInteresados = (evento) => __awaiter(void 0, void 0, void 0, function* () {
     return new Promise((resolve, reject) => {
-        const query = `SELECT COUNT(*) from evento_usuarios where Id_Evento=${evento};`;
+        const query = `SELECT COUNT(*) as Interesados from evento_usuarios where Id_Evento=${evento};`;
         try {
             database_1.default.query(query, (_err, result) => {
                 resolve(result);
@@ -118,3 +118,17 @@ const getInteresados = (evento) => __awaiter(void 0, void 0, void 0, function* (
     });
 });
 exports.getInteresados = getInteresados;
+const deleteEventUser = (eventoUser) => __awaiter(void 0, void 0, void 0, function* () {
+    return new Promise((resolve, reject) => {
+        const query = `DELETE FROM evento_usuarios WHERE Id_Usuario=${eventoUser.Id_Usuario} AND Id_Evento=${eventoUser.Id_Evento};`;
+        try {
+            database_1.default.query(query, (_err, result) => {
+                resolve(result);
+            });
+        }
+        catch (error) {
+            reject(error);
+        }
+    });
+});
+exports.deleteEventUser = deleteEventUser;

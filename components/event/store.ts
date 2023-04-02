@@ -61,7 +61,7 @@ export const getEventUser= async (idUsuario: number) => {
 
 export const addEventUser = async (eventoUser:EventUser) => {
     return new Promise((resolve, reject) => {
-        const query = `INSERT INTO Evento_Usuarios VALUES(${eventoUser.Id_Evento},${eventoUser.Id_Usuario})`;
+        const query = `INSERT INTO evento_usuarios VALUES(${eventoUser.Id_Evento},${eventoUser.Id_Usuario})`;
         try {
             db.query(query, (_err, result) => {
                 resolve(result);
@@ -87,7 +87,20 @@ export const addEvent = async (evento:Event) => {
 
 export const getInteresados = async (evento:number) => {
     return new Promise((resolve, reject) => {
-        const query = `SELECT COUNT(*) from evento_usuarios where Id_Evento=${evento};`;
+        const query = `SELECT COUNT(*) as Interesados from evento_usuarios where Id_Evento=${evento};`;
+        try {
+            db.query(query, (_err, result) => {
+                resolve(result);
+            })
+        } catch (error) {
+            reject(error);
+        }
+    })
+}
+
+export const deleteEventUser = async (eventoUser:EventUser) => {
+    return new Promise((resolve, reject) => {
+        const query = `DELETE FROM evento_usuarios WHERE Id_Usuario=${eventoUser.Id_Usuario} AND Id_Evento=${eventoUser.Id_Evento};`;
         try {
             db.query(query, (_err, result) => {
                 resolve(result);
