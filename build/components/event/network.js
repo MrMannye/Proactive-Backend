@@ -78,7 +78,7 @@ router.post("/addEvent", (req, res) => __awaiter(void 0, void 0, void 0, functio
 // ELIMIAR UN EVENTO DEL USUARIO
 router.post("/deletEventUser", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const eventosUser = yield (0, controller_1.addEventUser)(req.body);
+        const eventosUser = yield (0, controller_1.deleteEventUser)(req.body);
         (0, response_1.responseSuccess)(req, res, eventosUser, 200);
     }
     catch (error) {

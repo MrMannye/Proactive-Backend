@@ -1,6 +1,6 @@
 import express from 'express'
 import { responseSuccess, responseError } from '../../network/response';
-import { getEvents, getEvent, getEventInterest, getEventUser, addEventUser, getInteresados } from './controller';
+import { getEvents, getEvent, getEventInterest, getEventUser, addEventUser, getInteresados, deleteEventUser } from './controller';
 
 const router = express.Router();
 
@@ -66,7 +66,7 @@ router.post("/addEvent", async(req,res) => {
 // ELIMIAR UN EVENTO DEL USUARIO
 router.post("/deletEventUser", async(req,res) => {
     try {
-        const eventosUser = await addEventUser(req.body);
+        const eventosUser = await deleteEventUser(req.body);
         responseSuccess(req,res,eventosUser,200);
     } catch (error) {
         responseError(req, res, error, 500);
