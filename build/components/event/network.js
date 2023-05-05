@@ -23,7 +23,7 @@ router.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         (0, response_1.responseSuccess)(req, res, eventos, 200);
     }
     catch (error) {
-        (0, response_1.responseError)(req, res, error, 500);
+        res.send("Hola");
     }
 }));
 // OBTENER UN EVENTO

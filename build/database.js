@@ -5,10 +5,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const mysql_1 = __importDefault(require("mysql"));
 const db = mysql_1.default.createPool({
-    host: "localhost",
-    user: "root",
-    password: "123456789",
-    database: "Proactive",
+    host: "b2e2w0o0ppbm09xyr5ys-mysql.services.clever-cloud.com",
+    user: "ufmmsgqyefsctovu",
+    password: "12DFh7xisGnbUHGTBxVxUE3456789",
+    database: "b2e2w0o0ppbm09xyr5ys",
     port: 3306,
 });
 exports.default = db;

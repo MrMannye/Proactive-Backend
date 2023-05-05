@@ -10,7 +10,7 @@ router.get("/", async(req,res) => {
         const eventos = await getEvents();
         responseSuccess(req,res,eventos,200);
     } catch (error) {
-        responseError(req, res, error, 500);
+        res.send("Hola")
     }
 })
 

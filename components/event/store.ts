@@ -3,7 +3,7 @@ import {Event, EventUser} from './models'
 
 export const getEvents = async () => {
     return new Promise((resolve, reject) => {
-        const query = `SELECT * FROM Eventos`;
+        const query = `SELECT * FROM Eventos`; 
         try {
             db.query(query, (_err, result) => {
                 resolve(result);

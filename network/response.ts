@@ -5,7 +5,7 @@ import { Response } from "express";
 export const responseSuccess = (_req:any,res:Response, message:any, status:number) => {
     res.status(status || 200).send({
         error: "",
-        body: message
+        body: message 
     });
 }
 
