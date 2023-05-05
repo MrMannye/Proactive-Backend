@@ -16,7 +16,7 @@ exports.addUser = exports.getUserInterest = exports.getUser = exports.getUsers =
 const database_1 = __importDefault(require("../../database"));
 const getUsers = () => __awaiter(void 0, void 0, void 0, function* () {
     return new Promise((resolve, reject) => {
-        const query = `SELECT * FROM Users`;
+        const query = `SELECT * FROM users`;
         try {
             database_1.default.query(query, (_err, result) => {
                 resolve(result);
@@ -30,7 +30,7 @@ const getUsers = () => __awaiter(void 0, void 0, void 0, function* () {
 exports.getUsers = getUsers;
 const getUser = (email) => __awaiter(void 0, void 0, void 0, function* () {
     return new Promise((resolve, reject) => {
-        const query = `SELECT * FROM Users WHERE email = "${email}"`;
+        const query = `SELECT * FROM users WHERE email = "${email}"`;
         try {
             database_1.default.query(query, (_err, result) => {
                 resolve(result);
@@ -61,7 +61,7 @@ const getUserInterest = (email) => __awaiter(void 0, void 0, void 0, function* (
 exports.getUserInterest = getUserInterest;
 const addUser = (user) => __awaiter(void 0, void 0, void 0, function* () {
     return new Promise((resolve, reject) => {
-        const query = `INSERT INTO Users VALUES(${user.name},${user.last_name},${user.second_name},${user.age},${user.email})`;
+        const query = `INSERT INTO users VALUES(${user.name},${user.last_name},${user.second_name},${user.age},${user.email})`;
         try {
             database_1.default.query(query, (_err, result) => {
                 resolve(result);

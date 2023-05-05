@@ -3,7 +3,7 @@ import {Event, EventUser} from './models'
 
 export const getEvents = async () => {
     return new Promise((resolve, reject) => {
-        const query = `SELECT * FROM Eventos`; 
+        const query = `SELECT * FROM eventos`; 
         try {
             db.query(query, (_err, result) => {
                 resolve(result);
@@ -16,7 +16,7 @@ export const getEvents = async () => {
 
 export const getEvent= async (id: number) => {
     return new Promise((resolve, reject) => {
-        const query = `SELECT * FROM Eventos WHERE id=${id}`;
+        const query = `SELECT * FROM eventos WHERE id=${id}`;
         try {
             db.query(query, (_err, result) => {
                 resolve(result);
@@ -74,7 +74,7 @@ export const addEventUser = async (eventoUser:EventUser) => {
 
 export const addEvent = async (evento:Event) => {
     return new Promise((resolve, reject) => {
-        const query = `INSERT INTO Eventos VALUES(${evento.name_evento},${evento.descripcion_evento},${evento.fecha_evento})`;
+        const query = `INSERT INTO eventos VALUES(${evento.name_evento},${evento.descripcion_evento},${evento.fecha_evento})`;
         try {
             db.query(query, (_err, result) => {
                 resolve(result);

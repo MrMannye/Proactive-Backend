@@ -16,7 +16,7 @@ exports.getUser = void 0;
 const database_1 = __importDefault(require("../../database"));
 const getUser = (email) => __awaiter(void 0, void 0, void 0, function* () {
     return new Promise((resolve, reject) => {
-        const query = `SELECT * FROM Users WHERE email = "${email}"`;
+        const query = `SELECT * FROM users WHERE email = "${email}"`;
         try {
             database_1.default.query(query, (_err, result) => {
                 console.log(result[0]);

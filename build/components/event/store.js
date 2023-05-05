@@ -16,7 +16,7 @@ exports.deleteEventUser = exports.getInteresados = exports.addEvent = exports.ad
 const database_1 = __importDefault(require("../../database"));
 const getEvents = () => __awaiter(void 0, void 0, void 0, function* () {
     return new Promise((resolve, reject) => {
-        const query = `SELECT * FROM Eventos`;
+        const query = `SELECT * FROM eventos`;
         try {
             database_1.default.query(query, (_err, result) => {
                 resolve(result);
@@ -30,7 +30,7 @@ const getEvents = () => __awaiter(void 0, void 0, void 0, function* () {
 exports.getEvents = getEvents;
 const getEvent = (id) => __awaiter(void 0, void 0, void 0, function* () {
     return new Promise((resolve, reject) => {
-        const query = `SELECT * FROM Eventos WHERE id=${id}`;
+        const query = `SELECT * FROM eventos WHERE id=${id}`;
         try {
             database_1.default.query(query, (_err, result) => {
                 resolve(result);
@@ -92,7 +92,7 @@ const addEventUser = (eventoUser) => __awaiter(void 0, void 0, void 0, function*
 exports.addEventUser = addEventUser;
 const addEvent = (evento) => __awaiter(void 0, void 0, void 0, function* () {
     return new Promise((resolve, reject) => {
-        const query = `INSERT INTO Eventos VALUES(${evento.name_evento},${evento.descripcion_evento},${evento.fecha_evento})`;
+        const query = `INSERT INTO eventos VALUES(${evento.name_evento},${evento.descripcion_evento},${evento.fecha_evento})`;
         try {
             database_1.default.query(query, (_err, result) => {
                 resolve(result);
