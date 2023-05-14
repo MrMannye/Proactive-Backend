@@ -1,5 +1,5 @@
 import express from 'express'
-import { getTask, getMyTasks, completeTask, getMyCompletedTasks } from './store';
+import { getTask, getMyTasks, completeTask, getMyCompletedTasks, addTask } from './store';
 import { responseError, responseSuccess } from '../../network/response';
 const router = express.Router();
 
@@ -34,6 +34,15 @@ router.get("/myCompletedTasks/:myaddress", async (req,res) => {
 router.post("/completeTask", async (req,res) => {
     try {
         const completeTasks = await completeTask(req.body);
+        responseSuccess(req,res,completeTasks,200);
+    } catch (error) {
+        responseError(req,res,error,500);
+    }   
+})
+
+router.post("/addTask", async (req,res) => {
+    try {
+        const completeTasks = await addTask(req.body);
         responseSuccess(req,res,completeTasks,200);
     } catch (error) {
         responseError(req,res,error,500);

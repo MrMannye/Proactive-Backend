@@ -52,4 +52,13 @@ router.post("/completeTask", (req, res) => __awaiter(void 0, void 0, void 0, fun
         (0, response_1.responseError)(req, res, error, 500);
     }
 }));
+router.post("/addTask", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const completeTasks = yield (0, store_1.addTask)(req.body);
+        (0, response_1.responseSuccess)(req, res, completeTasks, 200);
+    }
+    catch (error) {
+        (0, response_1.responseError)(req, res, error, 500);
+    }
+}));
 exports.default = router;

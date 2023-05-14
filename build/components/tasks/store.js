@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.completeTask = exports.getMyCompletedTasks = exports.getMyTasks = exports.getTask = void 0;
+exports.addTask = exports.completeTask = exports.getMyCompletedTasks = exports.getMyTasks = exports.getTask = void 0;
 const database_1 = __importDefault(require("../../database"));
 const getTask = (id) => __awaiter(void 0, void 0, void 0, function* () {
     return new Promise((resolve, reject) => __awaiter(void 0, void 0, void 0, function* () {
@@ -74,3 +74,18 @@ const completeTask = (completedTask) => __awaiter(void 0, void 0, void 0, functi
     }));
 });
 exports.completeTask = completeTask;
+const addTask = (task) => __awaiter(void 0, void 0, void 0, function* () {
+    return new Promise((resolve, reject) => __awaiter(void 0, void 0, void 0, function* () {
+        const query = `INSERT INTO tasks (nombre_task,descripcion_task,completed_task,user_address) VALUES("${task.nombre_task}","${task.descripcion_task}", ${task.completed_task}, "${task.user_address}")`;
+        try {
+            database_1.default.query(query, (_err, result) => {
+                console.log(_err);
+                resolve(result);
+            });
+        }
+        catch (error) {
+            reject(error);
+        }
+    }));
+});
+exports.addTask = addTask;
