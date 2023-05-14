@@ -12,10 +12,25 @@ export const getUsers = async () => {
     })
 }
 
-export const getUser = async (email:string) => {
+export const getUser = async (myaddress:string) => {
     return new Promise(async(resolve,reject) => {
         try {
-            const user = await getOne(email);
+            const user:User[] = await getOne(myaddress);
+            // NO EXISTE EL USUARIO CON ESA DIRECCION DE WALLET
+            if(!user.length){
+                const newUser:User = {
+                    name: "",
+                    last_name: "",
+                    second_name:"",
+                    age: 18, 
+                    myaddress: myaddress,
+                    friend_transfer: "", 
+                    email: "",
+                    password: ""
+                }
+                const userAdded = await addUser(newUser);
+                resolve("USUARIO NUEVO")
+            }
             resolve(user);
         } catch (error) {
             reject(error)

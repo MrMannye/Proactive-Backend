@@ -16,9 +16,9 @@ router.get("/", async(req,res) => {
 })
 
 // OBTENER UN USUARIO
-router.get("/:email", async(req,res) => {
+router.get("/:myaddress", async(req,res) => {
     try {
-        const user = await getUser(req.params.email);
+        const user = await getUser(req.params.myaddress);
         responseSuccess(req,res,user,200);
     } catch (error) {
         responseError(req, res, error, 500);

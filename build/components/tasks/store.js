@@ -12,56 +12,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.addUser = exports.getUserInterest = exports.getUser = exports.getUsers = void 0;
+exports.completeTask = exports.getMyCompletedTasks = exports.getMyTasks = exports.getTask = void 0;
 const database_1 = __importDefault(require("../../database"));
-const getUsers = () => __awaiter(void 0, void 0, void 0, function* () {
-    return new Promise((resolve, reject) => {
-        const query = `SELECT * FROM users`;
-        try {
-            database_1.default.query(query, (_err, result) => {
-                resolve(result);
-            });
-        }
-        catch (error) {
-            reject(error);
-        }
-    });
-});
-exports.getUsers = getUsers;
-const getUser = (myaddress) => __awaiter(void 0, void 0, void 0, function* () {
-    return new Promise((resolve, reject) => {
-        const query = `SELECT * FROM users WHERE my_address = "${myaddress}"`;
-        try {
-            database_1.default.query(query, (_err, result) => {
-                resolve(result);
-            });
-        }
-        catch (error) {
-            reject(error);
-        }
-    });
-});
-exports.getUser = getUser;
-const getUserInterest = (email) => __awaiter(void 0, void 0, void 0, function* () {
-    return new Promise((resolve, reject) => {
-        const query = `SELECT * FROM users_intereses 
-        INNER JOIN intereses ON users_intereses.Id_Interes = intereses.Id
-        INNER JOIN users ON users_intereses.Id_User = users.Id
-        WHERE users.email = "${email}"`;
-        try {
-            database_1.default.query(query, (_err, result) => {
-                resolve(result);
-            });
-        }
-        catch (error) {
-            reject(error);
-        }
-    });
-});
-exports.getUserInterest = getUserInterest;
-const addUser = (user) => __awaiter(void 0, void 0, void 0, function* () {
-    return new Promise((resolve, reject) => {
-        const query = `INSERT INTO users (name,last_name,second_name,age,my_address,friend_transfer,email,password) VALUES("${user.name}","${user.last_name}","${user.second_name}",${user.age},"${user.myaddress}","${user.friend_transfer}","${user.email}","${user.password}")`;
+const getTask = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    return new Promise((resolve, reject) => __awaiter(void 0, void 0, void 0, function* () {
+        const query = `SELECT * FROM tasks WHERE id = ${id}`;
         try {
             database_1.default.query(query, (_err, result) => {
                 console.log(_err);
@@ -71,6 +26,51 @@ const addUser = (user) => __awaiter(void 0, void 0, void 0, function* () {
         catch (error) {
             reject(error);
         }
-    });
+    }));
 });
-exports.addUser = addUser;
+exports.getTask = getTask;
+const getMyTasks = (myaddress) => __awaiter(void 0, void 0, void 0, function* () {
+    return new Promise((resolve, reject) => __awaiter(void 0, void 0, void 0, function* () {
+        const query = `SELECT * FROM tasks WHERE tasks.user_address = "${myaddress}" AND tasks.completed_task = 0`;
+        try {
+            database_1.default.query(query, (_err, result) => {
+                console.log(_err);
+                resolve(result);
+            });
+        }
+        catch (error) {
+            reject(error);
+        }
+    }));
+});
+exports.getMyTasks = getMyTasks;
+const getMyCompletedTasks = (myaddress) => __awaiter(void 0, void 0, void 0, function* () {
+    return new Promise((resolve, reject) => __awaiter(void 0, void 0, void 0, function* () {
+        const query = `SELECT * FROM tasks WHERE tasks.user_address = "${myaddress}" AND tasks.completed_task = 1`;
+        try {
+            database_1.default.query(query, (_err, result) => {
+                console.log(_err);
+                resolve(result);
+            });
+        }
+        catch (error) {
+            reject(error);
+        }
+    }));
+});
+exports.getMyCompletedTasks = getMyCompletedTasks;
+const completeTask = (completedTask) => __awaiter(void 0, void 0, void 0, function* () {
+    return new Promise((resolve, reject) => __awaiter(void 0, void 0, void 0, function* () {
+        const query = `UPDATE tasks SET tasks.completed_task = ${completedTask.completed_task} WHERE tasks.id = ${completedTask.id_task}`;
+        try {
+            database_1.default.query(query, (_err, result) => {
+                console.log(_err);
+                resolve(result);
+            });
+        }
+        catch (error) {
+            reject(error);
+        }
+    }));
+});
+exports.completeTask = completeTask;

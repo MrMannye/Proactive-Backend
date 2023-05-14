@@ -14,9 +14,9 @@ export const getUsers = async () => {
     })
 }
 
-export const getUser = async (email: string) => {
+export const getUser = async (myaddress: string): Promise<User[]> => {
     return new Promise((resolve, reject) => {
-        const query = `SELECT * FROM users WHERE email = "${email}"`;
+        const query = `SELECT * FROM users WHERE my_address = "${myaddress}"`;
         try {
             db.query(query, (_err, result) => {
                 resolve(result);
@@ -45,9 +45,10 @@ export const getUserInterest = async (email: string) => {
 
 export const addUser = async (user:User) => {
     return new Promise((resolve, reject) => {
-        const query = `INSERT INTO users VALUES(${user.name},${user.last_name},${user.second_name},${user.age},${user.email})`;
+        const query = `INSERT INTO users (name,last_name,second_name,age,my_address,friend_transfer,email,password) VALUES("${user.name}","${user.last_name}","${user.second_name}",${user.age},"${user.myaddress}","${user.friend_transfer}","${user.email}","${user.password}")`;
         try {
             db.query(query, (_err, result) => {
+                console.log(_err)
                 resolve(result);
             })
         } catch (error) {

@@ -13,44 +13,40 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const store_1 = require("./store");
 const response_1 = require("../../network/response");
-const controller_1 = require("./controller");
-const controller_2 = require("./controller");
 const router = express_1.default.Router();
-// OBTENER TODOS LOS USUARIOS
-router.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.get("/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const users = yield (0, controller_1.getUsers)();
-        (0, response_1.responseSuccess)(req, res, users, 200);
+        const task = yield (0, store_1.getTask)(parseInt(req.params.id));
+        (0, response_1.responseSuccess)(req, res, task, 200);
+    }
+    catch (error) {
+        (0, response_1.responseError)(req, res, error, 200);
+    }
+}));
+router.get("/mytasks/:myaddress", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const myTasks = yield (0, store_1.getMyTasks)(req.params.myaddress);
+        (0, response_1.responseSuccess)(req, res, myTasks, 200);
     }
     catch (error) {
         (0, response_1.responseError)(req, res, error, 500);
     }
 }));
-// OBTENER UN USUARIO
-router.get("/:myaddress", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.get("/myCompletedTasks/:myaddress", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const user = yield (0, controller_1.getUser)(req.params.myaddress);
-        (0, response_1.responseSuccess)(req, res, user, 200);
+        const myCompletedTasks = yield (0, store_1.getMyCompletedTasks)(req.params.myaddress);
+        (0, response_1.responseSuccess)(req, res, myCompletedTasks, 200);
     }
     catch (error) {
         (0, response_1.responseError)(req, res, error, 500);
     }
 }));
-router.get("/interest/:email", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.post("/completeTask", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const user = yield (0, controller_2.getUserInterest)(req.params.email);
-        (0, response_1.responseSuccess)(req, res, user, 200);
-    }
-    catch (error) {
-        (0, response_1.responseError)(req, res, error, 500);
-    }
-}));
-// AÑADIR USUARIO NUEVO 
-router.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const newUser = yield (0, controller_1.addUser)(req.body);
-        (0, response_1.responseSuccess)(req, res, newUser, 200);
+        const completeTasks = yield (0, store_1.completeTask)(req.body);
+        (0, response_1.responseSuccess)(req, res, completeTasks, 200);
     }
     catch (error) {
         (0, response_1.responseError)(req, res, error, 500);

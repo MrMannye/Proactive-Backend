@@ -23,10 +23,25 @@ const getUsers = () => __awaiter(void 0, void 0, void 0, function* () {
     }));
 });
 exports.getUsers = getUsers;
-const getUser = (email) => __awaiter(void 0, void 0, void 0, function* () {
+const getUser = (myaddress) => __awaiter(void 0, void 0, void 0, function* () {
     return new Promise((resolve, reject) => __awaiter(void 0, void 0, void 0, function* () {
         try {
-            const user = yield (0, store_1.getUser)(email);
+            const user = yield (0, store_1.getUser)(myaddress);
+            // NO EXISTE EL USUARIO CON ESA DIRECCION DE WALLET
+            if (!user.length) {
+                const newUser = {
+                    name: "",
+                    last_name: "",
+                    second_name: "",
+                    age: 18,
+                    myaddress: myaddress,
+                    friend_transfer: "",
+                    email: "",
+                    password: ""
+                };
+                const userAdded = yield (0, exports.addUser)(newUser);
+                resolve("USUARIO NUEVO");
+            }
             resolve(user);
         }
         catch (error) {
