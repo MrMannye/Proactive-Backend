@@ -59,7 +59,7 @@ export const completeTask = async(completedTask: completedTask) => {
 
 export const addTask = async(task: Task) => {
     return new Promise(async(resolve,reject) => {
-        const query = `INSERT INTO tasks (nombre_task,descripcion_task,completed_task,user_address,created_task) VALUES("${task.nombre_task}","${task.descripcion_task}", ${task.completed_task}, "${task.user_address}",${task.created_task})`;
+        const query = `INSERT INTO tasks (nombre_task,descripcion_task,completed_task,user_address,created_task) VALUES("${task.nombre_task}","${task.descripcion_task}", ${task.completed_task}, "${task.user_address}","${task.created_task}")`;
         try {
             db.query(query, (_err,result) => {
                 console.log(_err);

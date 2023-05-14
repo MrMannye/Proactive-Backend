@@ -3,7 +3,7 @@ export interface Task {
     descripcion_task: string, 
     completed_task: boolean, 
     user_address: number,
-    created_task: Date
+    created_task: string
 }
 
 export interface completedTask{
