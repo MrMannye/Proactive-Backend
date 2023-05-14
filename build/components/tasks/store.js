@@ -76,7 +76,7 @@ const completeTask = (completedTask) => __awaiter(void 0, void 0, void 0, functi
 exports.completeTask = completeTask;
 const addTask = (task) => __awaiter(void 0, void 0, void 0, function* () {
     return new Promise((resolve, reject) => __awaiter(void 0, void 0, void 0, function* () {
-        const query = `INSERT INTO tasks (nombre_task,descripcion_task,completed_task,user_address) VALUES("${task.nombre_task}","${task.descripcion_task}", ${task.completed_task}, "${task.user_address}")`;
+        const query = `INSERT INTO tasks (nombre_task,descripcion_task,completed_task,user_address,created_task) VALUES("${task.nombre_task}","${task.descripcion_task}", ${task.completed_task}, "${task.user_address}",${task.created_task})`;
         try {
             database_1.default.query(query, (_err, result) => {
                 console.log(_err);
