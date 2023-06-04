@@ -45,7 +45,7 @@ export const getUserInterest = async (email: string) => {
 
 export const addUser = async (user:User) => {
     return new Promise((resolve, reject) => {
-        const query = `INSERT INTO users (name,last_name,second_name,age,my_address,friend_transfer,email,password) VALUES("${user.name}","${user.last_name}","${user.second_name}",${user.age},"${user.myaddress}","${user.friend_transfer}","${user.email}","${user.password}")`;
+        const query = `INSERT INTO users (name,last_name,second_name,age,my_address,friend_transfer,email,password,level) VALUES("${user.name}","${user.last_name}","${user.second_name}",${user.age},"${user.myaddress}","${user.friend_transfer}","${user.email}","${user.password}",${user.level})`;
         try {
             db.query(query, (_err, result) => {
                 console.log(_err)

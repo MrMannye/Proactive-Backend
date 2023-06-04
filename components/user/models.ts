@@ -6,5 +6,6 @@ export interface User{
     myaddress: string,
     friend_transfer: string,
     email: string,
-    password: string
+    password: string,
+    level: number,
 }

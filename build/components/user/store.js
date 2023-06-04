@@ -61,7 +61,7 @@ const getUserInterest = (email) => __awaiter(void 0, void 0, void 0, function* (
 exports.getUserInterest = getUserInterest;
 const addUser = (user) => __awaiter(void 0, void 0, void 0, function* () {
     return new Promise((resolve, reject) => {
-        const query = `INSERT INTO users (name,last_name,second_name,age,my_address,friend_transfer,email,password) VALUES("${user.name}","${user.last_name}","${user.second_name}",${user.age},"${user.myaddress}","${user.friend_transfer}","${user.email}","${user.password}")`;
+        const query = `INSERT INTO users (name,last_name,second_name,age,my_address,friend_transfer,email,password,level) VALUES("${user.name}","${user.last_name}","${user.second_name}",${user.age},"${user.myaddress}","${user.friend_transfer}","${user.email}","${user.password}",${user.level})`;
         try {
             database_1.default.query(query, (_err, result) => {
                 console.log(_err);

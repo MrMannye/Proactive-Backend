@@ -26,7 +26,8 @@ export const getUser = async (myaddress:string) => {
                     myaddress: myaddress,
                     friend_transfer: "", 
                     email: "",
-                    password: ""
+                    password: "",
+                    level: 1,
                 }
                 const userAdded = await addUser(newUser);
                 resolve("USUARIO NUEVO")

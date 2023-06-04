@@ -37,7 +37,8 @@ const getUser = (myaddress) => __awaiter(void 0, void 0, void 0, function* () {
                     myaddress: myaddress,
                     friend_transfer: "",
                     email: "",
-                    password: ""
+                    password: "",
+                    level: 1,
                 };
                 const userAdded = yield (0, exports.addUser)(newUser);
                 resolve("USUARIO NUEVO");
